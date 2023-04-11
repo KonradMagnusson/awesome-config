@@ -93,7 +93,12 @@ globalkeys = gears.table.join(
 
     -- Menubar
     awful.key({ modkey, shift  }, "r", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+              {description = "show the menubar", group = "launcher"}),
+
+    awful.key({ modkey, ctrl },            "s",     function () awful.spawn("systemctl suspend") end,
+              {description = "sleep", group = "awesome"}),
+    awful.key({ modkey, ctrl },            "p",     function () awful.spawn("poweroff") end,
+              {description = "poweroff", group = "awesome"})
 )
 
 return globalkeys

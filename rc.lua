@@ -43,7 +43,6 @@ ctrl = "Control"
 alt = "Mod1"
 
 
--- Table of layouts to cover with awful.layout.inc, order matters.
 awful.layout.layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.tile.top,
@@ -64,11 +63,10 @@ local function set_wallpaper(s)
     -- Wallpaper
     if beautiful.wallpaper then
         local wallpaper = beautiful.wallpaper
-        -- If wallpaper is a function, call it with the screen
         if type(wallpaper) == "function" then
             wallpaper = wallpaper(s)
         end
-		local black = gears.color.parse_color("#00000000")
+		local black = gears.color.parse_color("#000000")
         gears.wallpaper.centered(wallpaper, s, black, 1)
     end
 end
@@ -115,6 +113,7 @@ awful.screen.connect_for_each_screen(function(s)
         {
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
+			spacer,
             textclock,
 			spacer,
 			battery,
