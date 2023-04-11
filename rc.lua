@@ -12,6 +12,7 @@ local hotkeys_popup = require("awful.hotkeys_popup")
 
 -- externals
 local lain = require("lain")
+local revelation = require("awesome-revelation")
 
 -- error handling
 if awesome.startup_errors then
@@ -50,6 +51,11 @@ awful.layout.layouts = {
     awful.layout.suit.fair.horizontal,
 }
 
+
+revelation.init({
+    tag_name = "You lost?",
+    char_order = "jklfdsuiorew0123456789"
+})
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 

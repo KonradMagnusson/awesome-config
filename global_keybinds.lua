@@ -3,6 +3,8 @@ local awful = require("awful")
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 
+local revelation = require("awesome-revelation")
+
 globalkeys = gears.table.join(
     awful.key({ modkey,           }, "h",		hotkeys_popup.show_help,
               { description = "show help",		group="awesome" }),
@@ -96,6 +98,11 @@ globalkeys = gears.table.join(
               {description = "show the menubar", group = "launcher"}),
 
 
+    -- show revelation for current tag
+    awful.key({ modkey,           }, "i",	function() revelation({curr_tag_only=true}) end),
+    -- show revelation for all tags
+    awful.key({ modkey,           }, "o",	function() revelation() end),
+		--
 	-- Screenie
 	awful.key({ modkey }, "s", function() os.execute("maim -u -s | xclip -selection clipboard -t image/png") end),
 
