@@ -11,7 +11,7 @@ local batwidget = awful.widget.watch(
 
 		local Green = "#00FF00"
 		local Red = "#FF0000"
-		local SomeKindaFuckinOrange = "FFBF40"
+		local SomeKindaFuckinOrange = "#FFBF40"
 
 		local IsCharging = stdout:match("Charging")
 		local IsDischarging = stdout:match("Discharging")
