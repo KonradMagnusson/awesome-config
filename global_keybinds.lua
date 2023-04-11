@@ -95,6 +95,10 @@ globalkeys = gears.table.join(
     awful.key({ modkey, shift  }, "r", function() menubar.show() end,
               {description = "show the menubar", group = "launcher"}),
 
+
+	-- Screenie
+	awful.key({ modkey }, "s", function() os.execute("maim -u -s | xclip -selection clipboard -t image/png") end),
+
     awful.key({ modkey, ctrl },            "s",     function () awful.spawn("systemctl suspend") end,
               {description = "sleep", group = "awesome"}),
     awful.key({ modkey, ctrl },            "p",     function () awful.spawn("poweroff") end,
