@@ -30,7 +30,7 @@ local batwidget = awful.widget.watch(
 			if PercVal < Critical then
 				color = Red
 			elseif PercVal < Low then
-				color = SomekindaFuckinOrange
+				color = SomeKindaFuckinOrange
 			end
 
 			local PercFmt = lain.util.markup(color, Perc)
