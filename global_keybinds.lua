@@ -41,6 +41,11 @@ globalkeys = gears.table.join(
     awful.key({ alt, shift	}, "Tab",		function () awful.client.focus.byidx(-1) end,
         { description = "focus previous by index", group = "client" }),
 
+    awful.key({ modkey, alt }, "j", function () awful.screen.focus_relative( 1) end,
+              {description = "focus the next screen", group = "screen"}),
+    awful.key({ modkey, alt }, "ö", function () awful.screen.focus_relative(-1) end,
+              {description = "focus the previous screen", group = "screen"}),
+
     -- Standard program
     awful.key({ modkey,           }, "d", function () awful.spawn(terminal) end,
               {description = "open a terminal", group = "launcher"}),
@@ -99,9 +104,11 @@ globalkeys = gears.table.join(
 
 
     -- show revelation for current tag
-    awful.key({ modkey,           }, "i",	function() revelation({curr_tag_only=true}) end),
+    awful.key({ modkey,           }, "i",	function() revelation({curr_tag_only=true}) end,
+	{ description = "Reveal current tag", group = "global" } ),
     -- show revelation for all tags
-    awful.key({ modkey,           }, "o",	function() revelation() end),
+    awful.key({ modkey,           }, "o",	function() revelation() end,
+	{ description = "Reveal all tags", group = "global" } ),
 		--
 	-- Screenie
 	awful.key({ modkey }, "s", function() os.execute("maim -u -s | xclip -selection clipboard -t image/png") end),

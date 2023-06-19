@@ -54,7 +54,7 @@ awful.layout.layouts = {
 
 revelation.init({
     tag_name = "You lost?",
-    char_order = "jklfdsuiorew0123456789"
+    char_order = "uiopjklöasdf"
 })
 -- Menubar configuration
 menubar.utils.terminal = terminal -- Set the terminal for applications that require it
@@ -62,8 +62,8 @@ menubar.utils.terminal = terminal -- Set the terminal for applications that requ
 -- widgets
 local spacer = wibox.widget.textbox( "  " )
 local textclock = wibox.widget.textclock( "%H:%M:%S", 1 )
-local battery = require("bat")
 
+local systray = wibox.widget.systray()
 
 local function set_wallpaper(s)
     -- Wallpaper
@@ -80,10 +80,12 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
+tags = { "1", "2", "3", "4", "5", "6" } 
+
 awful.screen.connect_for_each_screen(function(s)
     set_wallpaper(s)
 
-    awful.tag({ "1", "2", "3", "4", "5", "6" }, s, awful.layout.layouts[1])
+    awful.tag(tags, s, awful.layout.layouts[1])
 
     s.promptbox = awful.widget.prompt()
     s.layoutbox = awful.widget.layoutbox(s)
@@ -99,11 +101,10 @@ awful.screen.connect_for_each_screen(function(s)
         filter  = awful.widget.tasklist.filter.currenttags,
     }
 
-    s.wibox = awful.wibar({ 
+    s.wibox = awful.wibar({
 		position = "bottom",
 		screen = s,
 		height = 18,
-		
 	})
 
     s.wibox:setup {
@@ -118,11 +119,10 @@ awful.screen.connect_for_each_screen(function(s)
 
         {
             layout = wibox.layout.fixed.horizontal,
-            wibox.widget.systray(),
 			spacer,
-            textclock,
+			systray,
+			textclock,
 			spacer,
-			battery,
             s.layoutbox,
         },
     }
@@ -133,7 +133,7 @@ globalkeys = require("global_keybinds")
 clientkeys = require("client_keybinds")
 
 -- Bind all key numbers to tags.
-for i = 1, 9 do
+for i = 1, #tags do
     globalkeys = gears.table.join(globalkeys,
         -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
